@@ -1,9 +1,14 @@
-
-import './App.css';
+import { useEffect, useState } from 'react';
 import UserCard from './components/UserCard';
-import users from './users';
 function App() {
-   
+  const [users,setUsers] = useState([])
+   useEffect(()=>{
+    fetch("https://user-badges-backend.onrender.com")
+    .then(res=>res.json())
+    .then(data=>{setUsers(data.users)
+    })
+    .catch(err=>console.log(err))
+   },[])
      return (
       <div>
         <h1>Users at acme Inc.</h1>
